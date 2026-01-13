@@ -3,8 +3,6 @@
 namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
-// hello
-// good morning
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
