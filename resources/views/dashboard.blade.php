@@ -11,6 +11,24 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{ __("You're logged in!") }}
                 </div>
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <h3 class="text-lg font-bold mb-4">プロジェクト管理</h3>
+
+                    <div class="space-y-2">
+                        <a href="{{ route('projects.create') }}"
+                        class="inline-block px-4 py-2 bg-blue-600 text-white rounded">
+                            プロジェクト登録
+                        </a>
+                        <a href="{{ route('projects.index') }}"
+                        class="inline-block px-4 py-2 bg-gray-600 text-white rounded">
+                            プロジェクト一覧
+                        </a>
+                        <a href="{{ route('projects.index') }}"
+                        class="inline-block px-4 py-2 bg-gray-600 text-white rounded">
+                            プロジェクト検索
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
