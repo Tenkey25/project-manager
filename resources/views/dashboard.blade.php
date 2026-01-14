@@ -19,13 +19,13 @@
                         class="inline-block px-4 py-2 bg-blue-600 text-white rounded">
                             プロジェクト登録
                         </a>
+                        <a href="{{ route('tasks.create') }}"
+                        class="inline-block px-4 py-2 bg-blue-600 text-white rounded">
+                            タスク登録
+                        </a>                        
                         <a href="{{ route('projects.index') }}"
-                        class="inline-block px-4 py-2 bg-gray-600 text-white rounded">
+                        class="inline-block px-4 py-2 bg-blue-600 text-white rounded">
                             プロジェクト一覧
-                        </a>
-                        <a href="{{ route('projects.index') }}"
-                        class="inline-block px-4 py-2 bg-gray-600 text-white rounded">
-                            プロジェクト検索
                         </a>
                     </div>
                 </div>

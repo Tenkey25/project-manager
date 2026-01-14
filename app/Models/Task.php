@@ -16,5 +16,5 @@ class Task extends Model
     'status',
     'assigned_user_id',
     'due_date',
-];
+    ];
 }
