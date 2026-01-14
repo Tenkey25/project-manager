@@ -21,7 +21,7 @@
                         </a>
                         <a href="{{ route('tasks.create') }}"
                         class="inline-block px-4 py-2 bg-blue-600 text-white rounded">
-                            タスク登録
+                            タスク登録・編集
                         </a>                        
                         <a href="{{ route('projects.index') }}"
                         class="inline-block px-4 py-2 bg-blue-600 text-white rounded">

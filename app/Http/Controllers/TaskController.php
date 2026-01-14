@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Http\Requests\StoreTaskRequest;
+use App\Http\Requests\UpdateTaskRequest;
 use App\Models\Project;
 use App\Models\Task;
 
@@ -27,7 +28,8 @@ class TaskController extends Controller
 
         $projects = Project::query()->latest()->get();  //プロジェクト選択欄にセットするデータ
 
-        $selectedProjectId = $request->query('project_id'); // ?project_id=xx を受け取る
+        // project_id がクエリで渡された時だけセット。なければ null。
+        $selectedProjectId = $request->query('project_id') ?: null;
 
         //DBにプロジェクトが未登録
         if ($projects->isEmpty()) {
@@ -36,7 +38,12 @@ class TaskController extends Controller
                 ->with('success', '先にプロジェクトを登録してください。');
         }
 
-        return view('tasks.create', compact('projects', 'selectedProjectId'));
+        return view('tasks.form', [
+            'task' => null,
+            'projects' => $projects,
+            'selectedProjectId' => $selectedProjectId,
+            'mode' => 'create',
+        ]);
     }
 
     /**
@@ -62,19 +69,30 @@ class TaskController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Task $task)
     {
-        //
+        $projects = Project::orderBy('id', 'desc')->get();
+
+        return view('tasks.form', [
+            'task' => $task,
+            'projects' => $projects,
+            'selectedProjectId' => $task->project_id,
+            'mode' => 'edit',
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateTaskRequest $request, Task $task)
     {
-        //
-    }
+        $task->update($request->validated());
 
+        // プロジェクト詳細へ遷移
+        return redirect()
+            ->route('projects.show', $task->project_id)
+            ->with('success', 'タスクを更新しました');
+    }
     /**
      * Remove the specified resource from storage.
      */

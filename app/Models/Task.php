@@ -17,6 +17,10 @@ class Task extends Model
     'assigned_user_id',
     'due_date',
     ];
+
+    protected $casts = [
+        'due_date' => 'date',
+    ];
     
     public function project()
     {

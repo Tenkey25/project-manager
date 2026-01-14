@@ -22,11 +22,10 @@
                     <div class="mb-4">
                         <label class="block text-sm font-medium text-gray-700">プロジェクト</label>
                         <select name="project_id" class="mt-1 block w-full rounded border-gray-300">
-                            <option value="">選択してください</option>
-                            @foreach ($projects as $project)
-                                <option value="{{ $project->id }}" @selected(old('project_id', $selectedProjectId) == $project->id)>
-                                    {{ $project->name }}
-                                </option>
+                            <option value=""
+                                @selected(old('project_id', $selectedProjectId) === null || old('project_id', $selectedProjectId) === '')>
+                                選択してください
+                            </option>
                             @endforeach
                         </select>
                         @error('project_id')

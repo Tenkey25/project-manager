@@ -47,17 +47,39 @@
                                         <th class="py-2">ステータス</th>
                                         <th class="py-2">期限</th>
                                         <th class="py-2">作成日</th>
+                                        <th class="py-2 text-center w-32 whitespace-nowrap">操作</th>
+
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
                                     @foreach($project->tasks as $task)
                                         <tr>
-                                            <td class="py-3">{{ $task->title }}</td>
+                                            <td class="py-3">
+                                                {{ $task->title }}
+                                            </td>
                                             <td class="py-3">{{ $task->status }}</td>
                                             <td class="py-3">
                                                 {{ $task->due_date ? \Carbon\Carbon::parse($task->due_date)->format('Y-m-d') : '-' }}
                                             </td>
                                             <td class="py-3">{{ $task->created_at->format('Y-m-d') }}</td>
+                                            <td class="py-2">
+                                                <div class="flex justify-center items-center gap-2 whitespace-nowrap">
+                                                    <a href="{{ route('tasks.edit', $task) }}"
+                                                    class="inline-flex items-center rounded-md
+                                                    border border-gray-800 bg-white
+                                                    px-3 py-1 text-sm font-medium text-gray-800
+                                                    hover:bg-gray-100 transition">
+                                                        編集
+                                                    </a>
+                                                    <a href="{{ route('tasks.edit', $task) }}"
+                                                    class="inline-flex items-center rounded-md
+                                                    border border-gray-800 bg-white
+                                                    px-3 py-1 text-sm font-medium text-gray-800
+                                                    hover:bg-gray-100 transition">
+                                                        削除
+                                                    </a>
+                                                </div>                                                
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
