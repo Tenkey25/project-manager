@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Project;
+use App\Http\Requests\StoreProjectRequest;
 
 class ProjectController extends Controller
 {
@@ -13,7 +14,11 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
+        $projects = Project::query()
+            ->latest()          // created_at desc
+            ->paginate(10);     // まずは10件ずつ
+
+        return view('projects.index', compact('projects'));
     }
 
     /**
