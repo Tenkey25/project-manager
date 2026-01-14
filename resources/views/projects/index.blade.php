@@ -41,7 +41,14 @@
                                 @foreach ($projects as $project)
                                     <tr class="border-b">
                                         <td class="py-2">{{ $project->id }}</td>
-                                        <td class="py-2">{{ $project->name }}</td>
+                                        <td class="py-2">
+                                            <a href="{{ route('projects.show', $project) }}"
+                                                class="font-medium text-indigo-600 dark:text-indigo-400
+                                                hover:text-indigo-800 dark:hover:text-indigo-300
+                                                hover:underline transition">
+                                            {{ $project->name }}
+                                            </a>
+                                        </td>
                                         <td class="py-2">{{ $project->status }}</td>
                                         <td class="py-2">{{ $project->created_at?->format('Y-m-d') }}</td>
                                     </tr>
