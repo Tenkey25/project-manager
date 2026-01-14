@@ -41,10 +41,14 @@
                         @enderror
                     </div>
 
-                    <button type="submit"
-                            class="inline-flex items-center rounded-md bg-slate-700 px-4 py-2 text-white hover:bg-slate-600 transition">
-                        登録
-                    </button>
+                    <div class="flex items-center justify-end">
+                        <button type="submit"
+                            class="inline-flex items-center rounded-md
+                            bg-slate-700 px-4 py-2 text-white
+                            hover:bg-slate-600 transition">
+                            登録
+                        </button>
+                    </div>
                 </form>
 
             </div>

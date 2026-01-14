@@ -123,8 +123,8 @@
                             </a>
 
                             <button type="submit"
-                                class="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2
-                                text-sm font-medium text-white hover:bg-indigo-700 transition">
+                                class="inline-flex items-center rounded-md border border-transparent bg-slate-700 px-4 py-2
+                                text-sm font-medium text-white hover:bg-slate-600 transition">
                                 {{ $mode === 'edit' ? '更新' : '登録' }}
                             </button>
                         </div>

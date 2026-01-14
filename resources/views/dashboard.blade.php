@@ -16,15 +16,15 @@
 
                     <div class="space-y-2">
                         <a href="{{ route('projects.create') }}"
-                        class="inline-block px-4 py-2 bg-blue-600 text-white rounded">
+                        class="inline-block px-4 py-2 bg-slate-700 hover:bg-slate-600 transition text-white rounded">
                             プロジェクト登録
                         </a>
                         <a href="{{ route('tasks.create') }}"
-                        class="inline-block px-4 py-2 bg-blue-600 text-white rounded">
+                        class="inline-block px-4 py-2 bg-slate-700 hover:bg-slate-600 transition text-white rounded">
                             タスク登録・編集
                         </a>                        
                         <a href="{{ route('projects.index') }}"
-                        class="inline-block px-4 py-2 bg-blue-600 text-white rounded">
+                        class="inline-block px-4 py-2 bg-slate-700 hover:bg-slate-600 transition text-white rounded">
                             プロジェクト一覧
                         </a>
                     </div>
