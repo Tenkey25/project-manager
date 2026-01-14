@@ -22,11 +22,12 @@ class TaskController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        $projects = Project::query()
-            ->orderBy('id', 'desc')
-            ->get(['id', 'name']);
+
+        $projects = Project::query()->latest()->get();  //プロジェクト選択欄にセットするデータ
+
+        $selectedProjectId = $request->query('project_id'); // ?project_id=xx を受け取る
 
         //DBにプロジェクトが未登録
         if ($projects->isEmpty()) {
@@ -35,7 +36,7 @@ class TaskController extends Controller
                 ->with('success', '先にプロジェクトを登録してください。');
         }
 
-        return view('tasks.create', compact('projects'));
+        return view('tasks.create', compact('projects', 'selectedProjectId'));
     }
 
     /**
