@@ -27,7 +27,9 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('projects.create');
+        return view('projects.create',[
+            'mode' => 'create',
+        ]);
     }
 
     /**
@@ -63,9 +65,16 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Project $project)
     {
-        //
+
+        $projects = Project::orderBy('id', 'desc')->get();
+
+        return view('projects.create', [
+            'projects' => $projects,
+            'selectedProjectId' => $project->project_id,
+            'mode' => 'edit',
+        ]);
     }
 
     /**

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-white leading-tight">
-            プロジェクト登録
+            プロジェクト{{ $mode === 'edit' ? '更新' : '登録' }}
         </h2>
     </x-slot>
 
@@ -16,7 +16,11 @@
                 @endif
 
                 <form method="POST" action="{{ route('projects.store') }}">
+                    
                     @csrf
+                    @if($mode === 'edit')
+                        @method('PATCH')
+                    @endif
 
                     {{-- name --}}
                     <div class="mb-4">

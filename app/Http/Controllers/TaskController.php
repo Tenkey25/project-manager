@@ -38,11 +38,9 @@ class TaskController extends Controller
                 ->with('success', '先にプロジェクトを登録してください。');
         }
 
-        return view('tasks.form', [
-            'task' => null,
+        return view('tasks.create', [
             'projects' => $projects,
             'selectedProjectId' => $selectedProjectId,
-            'mode' => 'create',
         ]);
     }
 
@@ -73,11 +71,10 @@ class TaskController extends Controller
     {
         $projects = Project::orderBy('id', 'desc')->get();
 
-        return view('tasks.form', [
+        return view('tasks.edit', [
             'task' => $task,
             'projects' => $projects,
             'selectedProjectId' => $task->project_id,
-            'mode' => 'edit',
         ]);
     }
 
@@ -93,6 +90,7 @@ class TaskController extends Controller
             ->route('projects.show', $task->project_id)
             ->with('success', 'タスクを更新しました');
     }
+    
     /**
      * Remove the specified resource from storage.
      */

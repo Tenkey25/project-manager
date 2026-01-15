@@ -36,6 +36,7 @@
                                     <th class="py-2">ステータス</th>
                                     <th class="py-2">期限</th>
                                     <th class="py-2">作成日</th>
+                                    <th class="py-2">操作</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -53,6 +54,31 @@
                                         <td class="py-2">{{ $project->status }}</td>
                                         <td class="py-2">{{ $project->end_date?->format('Y-m-d') }}</td>
                                         <td class="py-2">{{ $project->created_at?->format('Y-m-d') }}</td>
+                                        <td class="py-2">
+                                            <div class="flex items-center gap-2 whitespace-nowrap">
+                                                <a href="{{ route('projects.edit', $project) }}"
+                                                class="inline-flex items-center rounded-md
+                                                border border-gray-800 bg-white
+                                                px-3 py-1 text-sm font-medium text-gray-800
+                                                hover:bg-gray-100 transition">
+                                                    編集
+                                                </a>
+
+                                                <form action="{{ route('projects.destroy', $project) }}" method="POST"
+                                                    onsubmit="return confirm('このプロジェクトを削除しますか？')">
+                                                    @csrf
+                                                    @method('DELETE')
+
+                                                    <button type="submit"
+                                                        class="inline-flex items-center rounded-md
+                                                            bg-rose-600 text-white border border-rose-600
+                                                            px-3 py-1 text-sm font-medium text-white
+                                                            hover:bg-rose-700 hover:border-rose-700 transition">
+                                                            削除
+                                                    </button>
+                                                </form>
+                                            </div>                                                
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
