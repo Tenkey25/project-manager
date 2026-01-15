@@ -73,8 +73,16 @@ class ProjectController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Project $project)
     {
-        //
+        // 紐づくタスクを先に SoftDelete
+        $project->tasks()->delete();
+
+        // プロジェクトを SoftDelete
+        $project->delete();
+
+        return redirect()
+            ->route('projects.index')
+            ->with('success', 'プロジェクトを削除しました');
     }
 }

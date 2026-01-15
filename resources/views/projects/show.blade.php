@@ -1,15 +1,36 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="flex items-center justify-between">
-            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                {{ $project->name }}
+            <h2 class="font-semibold text-xl text-white leading-tight">
+                プロジェクト名：{{ $project->name }}
             </h2>
 
-            <a href="{{ route('tasks.create', ['project_id' => $project->id]) }}"
-               class="inline-flex items-center px-4 py-2 bg-gray-800 dark:bg-gray-200 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-white transition">
-                タスク追加
-            </a>
+            <div class="flex items-center gap-3">
+                <a href="{{ route('tasks.create', ['project_id' => $project->id]) }}"
+                class="inline-flex items-center px-4 py-2 rounded-md
+                        border border-white/20 bg-white/10
+                        text-sm font-medium text-white
+                        hover:bg-white/20 transition">
+                    タスク追加
+                </a>
+
+                <form action="{{ route('projects.destroy', $project) }}" method="POST"
+                    onsubmit="return confirm('このプロジェクトを削除しますか？紐づくタスクも削除されます。')">
+                    @csrf
+                    @method('DELETE')
+
+                    <button type="submit"
+                        class="inline-flex items-center px-4 py-2 rounded-md
+                            bg-rose-600 text-white border border-rose-600
+                            text-sm font-medium
+                            hover:bg-rose-700 hover:border-rose-700
+                            transition">
+                        プロジェクト削除
+                    </button>
+                </form>
+            </div>
         </div>
+
     </x-slot>
 
     <div class="py-12">
