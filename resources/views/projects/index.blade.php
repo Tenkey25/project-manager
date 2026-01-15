@@ -8,7 +8,7 @@
             <a href="{{ route('projects.create') }}"
                 class="inline-flex items-center rounded-md border border-white/20 bg-white/10 px-4 py-2
                 text-sm font-medium text-white hover:bg-white/20 transition">
-                新規登録
+                プロジェクト登録
             </a>
         </div>
     </x-slot>
