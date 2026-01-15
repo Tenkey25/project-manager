@@ -76,7 +76,7 @@
                                         <th class="py-2">ステータス</th>
                                         <th class="py-2">期限</th>
                                         <th class="py-2">作成日</th>
-                                        <th class="py-2 text-center w-32 whitespace-nowrap">操作</th>
+                                        <th class="py-2">操作</th>
 
                                     </tr>
                                 </thead>
@@ -92,9 +92,9 @@
                                             </td>
                                             <td class="py-3">{{ $task->created_at->format('Y-m-d') }}</td>
                                             <td class="py-2">
-                                                <div class="flex justify-center items-center gap-2 whitespace-nowrap">
+                                                <div class="flex gap-2 whitespace-nowrap">
                                                     <a href="{{ route('tasks.edit', $task) }}"
-                                                    class="inline-flex items-center rounded-md
+                                                    class="inline-flex rounded-md
                                                     border border-gray-800 bg-white
                                                     px-3 py-1 text-sm font-medium text-gray-800
                                                     hover:bg-gray-100 transition">
@@ -107,7 +107,7 @@
                                                         @method('DELETE')
 
                                                         <button type="submit"
-                                                            class="inline-flex items-center rounded-md
+                                                            class="inline-flex rounded-md
                                                                 bg-rose-600 text-white border border-rose-600
                                                                 px-3 py-1 text-sm font-medium text-white
                                                                 hover:bg-rose-700 hover:border-rose-700 transition">
