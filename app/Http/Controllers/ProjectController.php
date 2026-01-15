@@ -15,6 +15,7 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::query()
+            ->where('user_id', auth()->id())        //ユーザごとに絞り込み
             ->latest()          // created_at desc
             ->paginate(10);     // まずは10件ずつ
 
@@ -36,7 +37,10 @@ class ProjectController extends Controller
     {
         $validated = $request->validated();
 
-        Project::create($validated);
+        Project::create([
+            ...$validated,
+            'user_id' => auth()->id(),
+        ]);
 
         return redirect()
             ->route('projects.index')
@@ -48,6 +52,8 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
+        $this->authorize('view', $project);
+
         $project->load('tasks');
 
         return view('projects.show', compact('project'));
@@ -75,6 +81,8 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        $this->authorize('update', $project);
+        
         // 紐づくタスクを先に SoftDelete
         $project->tasks()->delete();
 

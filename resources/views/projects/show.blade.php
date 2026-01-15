@@ -13,21 +13,22 @@
                         hover:bg-white/20 transition">
                     タスク追加
                 </a>
+                @can('delete', $project)
+                    <form action="{{ route('projects.destroy', $project) }}" method="POST"
+                        onsubmit="return confirm('このプロジェクトを削除しますか？紐づくタスクも削除されます。')">
+                        @csrf
+                        @method('DELETE')
 
-                <form action="{{ route('projects.destroy', $project) }}" method="POST"
-                    onsubmit="return confirm('このプロジェクトを削除しますか？紐づくタスクも削除されます。')">
-                    @csrf
-                    @method('DELETE')
-
-                    <button type="submit"
-                        class="inline-flex items-center px-4 py-2 rounded-md
-                            bg-rose-600 text-white border border-rose-600
-                            text-sm font-medium
-                            hover:bg-rose-700 hover:border-rose-700
-                            transition">
-                        プロジェクト削除
-                    </button>
-                </form>
+                        <button type="submit"
+                            class="inline-flex items-center px-4 py-2 rounded-md
+                                bg-rose-600 text-white border border-rose-600
+                                text-sm font-medium
+                                hover:bg-rose-700 hover:border-rose-700
+                                transition">
+                            プロジェクト削除
+                        </button>
+                    </form>
+                @endcan
             </div>
         </div>
 

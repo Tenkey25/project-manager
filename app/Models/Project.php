@@ -10,7 +10,7 @@ class Project extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['name', 'status' ,'description' ,'end_date'];
+    protected $fillable = ['user_id', 'name', 'status' ,'description' ,'end_date'];
 
     protected $casts = [
         'end_date' => 'date',
