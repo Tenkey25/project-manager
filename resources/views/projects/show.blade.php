@@ -52,6 +52,13 @@
                 </div>
             </div>
 
+            {{-- 成功メッセージ --}}
+            @if (session('success'))
+                <div class="mb-4 rounded-lg bg-green-600 px-4 py-3 text-white shadow">
+                    {{ session('success') }}
+                </div>
+            @endif
+
             {{-- Tasks --}}
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
@@ -92,13 +99,28 @@
                                                     hover:bg-gray-100 transition">
                                                         編集
                                                     </a>
-                                                    <a href="{{ route('tasks.edit', $task) }}"
+                                                    <!-- <a href="{{ route('tasks.destroy', $task) }}"
                                                     class="inline-flex items-center rounded-md
-                                                    border border-gray-800 bg-white
-                                                    px-3 py-1 text-sm font-medium text-gray-800
-                                                    hover:bg-gray-100 transition">
+                                                    bg-rose-600 text-white border border-rose-600
+                                                    px-3 py-1 text-sm font-medium text-white
+                                                    hover:bg-rose-700 hover:border-rose-700 transition">
                                                         削除
-                                                    </a>
+                                                    </a> -->
+
+                                                    <form action="{{ route('tasks.destroy', $task) }}" method="POST"
+                                                        onsubmit="return confirm('このタスクを削除しますか？')">
+                                                        @csrf
+                                                        @method('DELETE')
+
+                                                        <button type="submit"
+                                                            class="inline-flex items-center rounded-md
+                                                                bg-rose-600 text-white border border-rose-600
+                                                                px-3 py-1 text-sm font-medium text-white
+                                                                hover:bg-rose-700 hover:border-rose-700 transition">
+                                                                削除
+                                                        </button>
+                                                    </form>
+
                                                 </div>                                                
                                             </td>
                                         </tr>

@@ -96,8 +96,24 @@ class TaskController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Task $task)
     {
-        //
-    }
+
+        // 念のため project を先に確定（削除後に参照しない）
+        $project = $task->project; // belongsTo
+
+        // タスクを SoftDelete
+        $task->delete();
+
+        // project が取れないデータが混ざってても落ちないようにする
+        if (!$project) {
+            return redirect()
+                ->route('projects.index')
+                ->with('success', 'タスクを削除しました');
+        }
+
+        return redirect()
+            ->route('projects.show', $project)
+            ->with('success', 'タスクを削除しました');
+        }
 }
