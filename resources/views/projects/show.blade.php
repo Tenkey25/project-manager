@@ -40,7 +40,7 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100 space-y-2">
                     <div class="flex items-center gap-3">
-                        <span class="text-sm text-gray-500 dark:text-gray-400">ステータス</span>
+                        <span class="text-sm text-gray-500 dark:text-gray-400">プロジェクトステータス</span>
                         <span class="px-2 py-1 text-xs rounded bg-gray-100 dark:bg-gray-700">
                             {{ $project->status }}
                         </span>
