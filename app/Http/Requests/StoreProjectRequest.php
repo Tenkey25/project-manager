@@ -25,6 +25,7 @@ class StoreProjectRequest extends FormRequest
             'name' => ['required', 'string', 'max:255'],
             'status' => ['required', 'in:todo,doing,done'],
             'start_date' => ['nullable', 'date'],
+            'description' => ['nullable', 'string', 'max:2000'],
             'end_date' => ['nullable', 'date', 'after_or_equal:start_date'],
         ];
     }
