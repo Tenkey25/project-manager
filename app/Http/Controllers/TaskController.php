@@ -26,8 +26,11 @@ class TaskController extends Controller
     public function create(Request $request)
     {
 
-        $projects = Project::query()->latest()->get();  //プロジェクト選択欄にセットするデータ
-
+        $projects = Project::query()
+            ->where('user_id', auth()->id())
+            ->latest()
+            ->get();
+            
         // project_id がクエリで渡された時だけセット。なければ null。
         $selectedProjectId = $request->query('project_id') ?: null;
 
