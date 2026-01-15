@@ -13,7 +13,7 @@ class ProjectPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return true; // 一覧へ入ること自体はOK（表示はクエリで絞る）
     }
 
     /**
@@ -29,7 +29,7 @@ class ProjectPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return true;
     }
 
     /**

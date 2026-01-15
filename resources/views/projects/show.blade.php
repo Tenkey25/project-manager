@@ -93,27 +93,31 @@
                                             <td class="py-3">{{ $task->created_at->format('Y-m-d') }}</td>
                                             <td class="py-2">
                                                 <div class="flex items-center gap-2 whitespace-nowrap">
-                                                    <a href="{{ route('tasks.edit', $task) }}"
-                                                    class="inline-flex rounded-md
-                                                    border border-gray-800 bg-white
-                                                    px-3 py-1 text-sm font-medium text-gray-800
-                                                    hover:bg-gray-100 transition">
-                                                        編集
-                                                    </a>
+                                                    @can('update', $project)
+                                                        <a href="{{ route('tasks.edit', $task) }}"
+                                                        class="inline-flex rounded-md
+                                                        border border-gray-800 bg-white
+                                                        px-3 py-1 text-sm font-medium text-gray-800
+                                                        hover:bg-gray-100 transition">
+                                                            編集
+                                                        </a>
+                                                    @endcan
 
-                                                    <form action="{{ route('tasks.destroy', $task) }}" method="POST"
-                                                        onsubmit="return confirm('このタスクを削除しますか？')">
-                                                        @csrf
-                                                        @method('DELETE')
+                                                    @can('delete', $project)
+                                                        <form action="{{ route('tasks.destroy', $task) }}" method="POST"
+                                                            onsubmit="return confirm('このタスクを削除しますか？')">
+                                                            @csrf
+                                                            @method('DELETE')
 
-                                                        <button type="submit"
-                                                            class="inline-flex items-center rounded-md
-                                                                bg-rose-600 text-white border border-rose-600
-                                                                px-3 py-1 text-sm font-medium text-white
-                                                                hover:bg-rose-700 hover:border-rose-700 transition">
-                                                                削除
-                                                        </button>
-                                                    </form>
+                                                            <button type="submit"
+                                                                class="inline-flex items-center rounded-md
+                                                                    bg-rose-600 text-white border border-rose-600
+                                                                    px-3 py-1 text-sm font-medium text-white
+                                                                    hover:bg-rose-700 hover:border-rose-700 transition">
+                                                                    削除
+                                                            </button>
+                                                        </form>
+                                                    @endcan
 
                                                 </div>                                                
                                             </td>

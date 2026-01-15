@@ -6,9 +6,16 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
+use App\Http\Requests\UpdateProjectRequest;
 
 class ProjectController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->authorizeResource(Project::class, 'project');
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -54,8 +61,6 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        $this->authorize('view', $project);
-
         $project->load('tasks');
 
         return view('projects.show', compact('project'));
@@ -68,21 +73,21 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
 
-        $projects = Project::orderBy('id', 'desc')->get();
-
-        return view('projects.create', [
-            'projects' => $projects,
-            'selectedProjectId' => $project->project_id,
-            'mode' => 'edit',
-        ]);
+        return view('projects.edit', compact('project'));
+        
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateProjectRequest $request, Project $project)
     {
-        //
+            $project->update($request->validated());
+
+            return redirect()
+                ->route('projects.show', $project)
+                ->with('success', 'プロジェクトを更新しました');
+
     }
 
     /**
@@ -90,7 +95,6 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        $this->authorize('update', $project);
         
         // 紐づくタスクを先に SoftDelete
         $project->tasks()->delete();
