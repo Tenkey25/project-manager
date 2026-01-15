@@ -51,10 +51,10 @@ class TaskController extends Controller
      */
     public function store(StoreTaskRequest $request)
     {
-        Task::create($request->validated());
+        $task = Task::create($request->validated());
 
         return redirect()
-            ->route('projects.index')
+            ->route('projects.show', $task->project_id)
             ->with('success', 'タスクを登録しました。');
     }
 

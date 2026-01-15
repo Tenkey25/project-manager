@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex items-center justify-between">
             <h2 class="font-semibold text-xl text-white leading-tight">
-                タスク編集・登録
+                タスク登録・編集
             </h2>
 
         </div>

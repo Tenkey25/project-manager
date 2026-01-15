@@ -99,13 +99,6 @@
                                                     hover:bg-gray-100 transition">
                                                         編集
                                                     </a>
-                                                    <!-- <a href="{{ route('tasks.destroy', $task) }}"
-                                                    class="inline-flex items-center rounded-md
-                                                    bg-rose-600 text-white border border-rose-600
-                                                    px-3 py-1 text-sm font-medium text-white
-                                                    hover:bg-rose-700 hover:border-rose-700 transition">
-                                                        削除
-                                                    </a> -->
 
                                                     <form action="{{ route('tasks.destroy', $task) }}" method="POST"
                                                         onsubmit="return confirm('このタスクを削除しますか？')">
