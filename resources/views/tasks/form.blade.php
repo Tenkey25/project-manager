@@ -2,18 +2,9 @@
     <x-slot name="header">
         <div class="flex items-center justify-between">
             <h2 class="font-semibold text-xl text-white leading-tight">
-                {{ $mode === 'edit' ? 'タスク編集' : 'タスク登録' }}
+                タスク編集・登録
             </h2>
 
-            @if(isset($task))
-                <a href="{{ route('projects.show', $task->project_id) }}">
-                    戻る
-                </a>
-            @else
-                <a href="{{ route('projects.index') }}">
-                    戻る
-                </a>
-            @endif
         </div>
     </x-slot>
 
