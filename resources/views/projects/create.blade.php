@@ -66,16 +66,26 @@
                             focus:border-indigo-500 focus:ring-indigo-500">
                     </div>
 
-                    <div class="flex items-center justify-end">
-                        <button type="submit"
+                    <div class="flex items-center justify-between">
+                        <button
+                            type="submit"
                             class="inline-flex items-center rounded-md
-                            bg-slate-700 px-4 py-2 text-white
-                            hover:bg-slate-600 transition">
+                                bg-slate-700 px-4 py-2 text-white
+                                hover:bg-slate-600 transition">
                             登録
                         </button>
-                    </div>
-                </form>
 
+                        <a
+                            href="{{ route('dashboard') }}"
+                            class="inline-flex items-center rounded-md
+                                px-4 py-2 text-slate-600 border border-black
+                                hover:bg-slate-100 hover:text-slate-800
+                                transition">
+                            キャンセル
+                        </a>
+                    </div>
+
+                </form>
             </div>
         </div>
     </div>
