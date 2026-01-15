@@ -34,6 +34,7 @@
                                     <th class="py-2">ID</th>
                                     <th class="py-2">名前</th>
                                     <th class="py-2">ステータス</th>
+                                    <th class="py-2">期限日</th>
                                     <th class="py-2">作成日</th>
                                 </tr>
                             </thead>
@@ -50,6 +51,7 @@
                                             </a>
                                         </td>
                                         <td class="py-2">{{ $project->status }}</td>
+                                        <td class="py-2">{{ $project->end_date?->format('Y-m-d') }}</td>
                                         <td class="py-2">{{ $project->created_at?->format('Y-m-d') }}</td>
                                     </tr>
                                 @endforeach
