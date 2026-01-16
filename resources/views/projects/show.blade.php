@@ -37,6 +37,13 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
 
+            {{-- 成功メッセージ --}}
+            @if (session('success'))
+                <div class="mb-4 rounded-lg bg-green-600 px-4 py-3 text-white shadow">
+                    {{ session('success') }}
+                </div>
+            @endif
+
             {{-- Project info --}}
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100 space-y-2">
@@ -56,13 +63,6 @@
                     </div>
                 </div>
             </div>
-
-            {{-- 成功メッセージ --}}
-            @if (session('success'))
-                <div class="mb-4 rounded-lg bg-green-600 px-4 py-3 text-white shadow">
-                    {{ session('success') }}
-                </div>
-            @endif
 
             {{-- Tasks --}}
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
