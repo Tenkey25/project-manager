@@ -23,6 +23,82 @@
                 </div>
             @endif
 
+            {{-- 検索 / フィルター --}}
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-6">
+                <div class="p-6">
+                    <form method="GET" action="{{ route('projects.index') }}" class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-end">
+                            {{-- Keyword --}}
+                            <div class="md:col-span-6">
+                                <label for="q" class="block text-sm font-medium text-gray-700">キーワード</label>
+                                <input
+                                    id="q"
+                                    name="q"
+                                    type="text"
+                                    value="{{ request('q') }}"
+                                    placeholder="プロジェクト名 / 説明で検索"
+                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm
+                                        focus:border-slate-500 focus:ring-slate-500"
+                                >
+                            </div>
+
+                            {{-- Status --}}
+                            <div class="md:col-span-3">
+                                <label for="status" class="block text-sm font-medium text-gray-700">ステータス</label>
+                                <select
+                                    id="status"
+                                    name="status"
+                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm
+                                        focus:border-slate-500 focus:ring-slate-500"
+                                >
+                                    <option value="">すべて</option>
+                                    <option value="todo"  @selected(request('status') === 'todo')>todo</option>
+                                    <option value="doing" @selected(request('status') === 'doing')>doing</option>
+                                    <option value="done"  @selected(request('status') === 'done')>done</option>
+                                </select>
+                            </div>
+
+                            {{-- Sort --}}
+                            <div class="md:col-span-3">
+                                <label for="sort" class="block text-sm font-medium text-gray-700">並び替え</label>
+                                <select
+                                    id="sort"
+                                    name="sort"
+                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm
+                                        focus:border-slate-500 focus:ring-slate-500"
+                                >
+                                    <option value="created_desc" @selected(request('sort','created_desc') === 'created_desc')>作成日（新しい順）</option>
+                                    <option value="created_asc"  @selected(request('sort') === 'created_asc')>作成日（古い順）</option>
+                                    <option value="end_asc"      @selected(request('sort') === 'end_asc')>期限（近い順）</option>
+                                    <option value="end_desc"     @selected(request('sort') === 'end_desc')>期限（遠い順）</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-3 justify-end">
+                            <a href="{{ route('projects.index') }}"
+                                class="inline-flex items-center px-4 py-2 rounded-md
+                                    bg-gray-200 text-gray-700 border border-gray-200
+                                    text-sm font-medium
+                                    hover:bg-gray-300 hover:border-gray-300
+                                    transition">
+                                クリア
+                            </a>
+
+                            <button type="submit"
+                                class="inline-flex items-center px-4 py-2 rounded-md
+                                    bg-slate-800 text-white text-sm font-medium
+                                    hover:bg-slate-700 transition">
+                                検索
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+
+            {{-- プロジェクト一覧テーブル --}}
             <div class="overflow-hidden bg-white shadow sm:rounded-lg">
                 <div class="p-6">
                     @if ($projects->count() === 0)
@@ -57,7 +133,7 @@
                                         <td class="py-2">
                                             <div class="flex items-center gap-2 whitespace-nowrap">
                                                 @can('update', $project)
-                                                    <a href="{{ route('projects.edit', $project) }}"
+                                                    <a href="{{ route('projects.edit', ['project' => $project, 'from' => 'index']) }}"
                                                     class="inline-flex items-center rounded-md
                                                             border border-gray-800 bg-white
                                                             px-3 py-1 text-sm font-medium text-gray-800
@@ -95,6 +171,7 @@
                 </div>
             </div>
 
+            {{-- ホームへ戻るボタン --}}
             <div class="mt-6 flex justify-center">
                 <a href="{{ route('dashboard') }}"
                 class="inline-flex items-center px-4 py-2 rounded-md

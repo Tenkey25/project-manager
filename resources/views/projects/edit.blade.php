@@ -30,6 +30,16 @@
                         @enderror
                     </div>
 
+                    {{-- description --}}
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700">概要</label>
+                        <textarea name="description" rows="4"
+                                  class="mt-1 block w-full rounded border-gray-300">{{ old('description', $project->description) }}</textarea>
+                        @error('description')
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+
                     {{-- status --}}
                     <div class="mb-4">
                         <label class="block text-sm font-medium text-gray-700">ステータス</label>
@@ -54,24 +64,24 @@
                         @enderror
                     </div>
 
-                    {{-- description --}}
-                    <div class="mb-6">
-                        <label class="block text-sm font-medium text-gray-700">概要</label>
-                        <textarea name="description" rows="4"
-                                  class="mt-1 block w-full rounded border-gray-300">{{ old('description', $project->description) }}</textarea>
-                        @error('description')
-                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                        @enderror
-                    </div>
-
                     <div class="flex items-center justify-between">
                         <button type="submit"
                                 class="inline-flex items-center rounded-md bg-slate-700 px-4 py-2 text-white hover:bg-slate-600 transition">
                             更新
                         </button>
 
-                        <a href="{{ route('projects.show', $project) }}"
-                           class="inline-flex items-center rounded-md px-4 py-2 text-slate-600 hover:bg-slate-100 hover:text-slate-800 transition">
+                        @php
+                            $from = request('from');
+                        @endphp
+
+                        <a
+                            href="{{ $from === 'show'
+                                ? route('projects.show', $project)
+                                : route('projects.index') }}"
+                            class="inline-flex items-center rounded-md
+                                px-4 py-2 text-slate-600 border border-black
+                                hover:bg-slate-100 hover:text-slate-800
+                                transition">
                             キャンセル
                         </a>
                     </div>
