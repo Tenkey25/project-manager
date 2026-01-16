@@ -21,39 +21,17 @@ class ProjectController extends Controller
      */
     public function index(Request $request)
     {
-
-        $query = Project::query()
-        ->where('user_id', auth()->id());
-
-        // 🔍 キーワード検索
-        if ($request->filled('q')) {
-
-            $q = $request->q;
-
-            $query->where(function ($sub) use ($q) {
-                $sub->where('name', 'like', "%{$q}%")
-                    ->orWhere('description', 'like', "%{$q}%");
-
-            });
-        }
-
-        // 🏷 ステータス絞り込み
-        if ($request->filled('status')) {
-            $query->where('status', $request->status);
-        }
-
-        // ↕ 並び替え
-        match ($request->input('sort', 'created_desc')) {
-            'created_asc'  => $query->orderBy('created_at', 'asc'),
-            'end_asc'      => $query->orderByRaw('end_date IS NULL, end_date asc'),
-            'end_desc'     => $query->orderByRaw('end_date IS NULL, end_date desc'),
-            default        => $query->orderBy('created_at', 'desc'),
-        };
-
-        $projects = $query->paginate(10)->withQueryString();
+        
+        $projects = Project::query()
+        ->ownedBy(auth()->id())
+        ->search($request->q)
+        ->status($request->status)
+        ->sort($request->input('sort', 'created_desc'))
+        ->paginate(10)
+        ->withQueryString();
 
         return view('projects.index', compact('projects'));
-        
+
     }
 
     /**
