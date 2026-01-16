@@ -6,6 +6,13 @@
             </h2>
 
             <div class="flex items-center gap-3">
+
+                <a href="{{ route('projects.edit', $project) }}"
+                    class="inline-flex items-center rounded-md border border-white/20 bg-white/10 px-4 py-2
+                    text-sm font-medium text-white hover:bg-white/20 transition">
+                    プロジェクト編集
+                </a>
+
                 @can('delete', $project)
                     <form action="{{ route('projects.destroy', $project) }}" method="POST"
                         onsubmit="return confirm('このプロジェクトを削除しますか？紐づくタスクも削除されます。')">
@@ -65,7 +72,7 @@
 
                         <a href="{{ route('tasks.create', ['project_id' => $project->id]) }}"
                         class="inline-flex items-center gap-2 px-4 py-2 rounded-md
-                                bg-slate-800 text-white
+                                bg-slate-700 text-white
                                 text-sm font-medium
                                 hover:bg-slate-700 transition">
                             <span class="text-lg leading-none">＋</span>
@@ -149,7 +156,7 @@
                     ← プロジェクト一覧へ戻る
                 </a>
             </div>
-            
+
         </div>
     </div>
 </x-app-layout>
