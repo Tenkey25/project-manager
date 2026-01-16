@@ -12,6 +12,12 @@ use App\Models\Task;
 
 class TaskController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->authorizeResource(\App\Models\Task::class, 'task');
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -30,7 +36,7 @@ class TaskController extends Controller
             ->where('user_id', auth()->id())
             ->latest()
             ->get();
-            
+
         // project_id がクエリで渡された時だけセット。なければ null。
         $selectedProjectId = $request->query('project_id') ?: null;
 
@@ -52,6 +58,13 @@ class TaskController extends Controller
      */
     public function store(StoreTaskRequest $request)
     {
+        $validated = $request->validated();
+
+        $project = Project::findOrFail($validated['project_id']);
+
+        // このProjectに紐づくタスクを作っていいか（= ownerか）
+        $this->authorize('update', $project);
+
         $task = Task::create($request->validated());
 
         return redirect()
@@ -72,7 +85,10 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        $projects = Project::orderBy('id', 'desc')->get();
+        $projects = Project::query()
+            ->where('user_id', auth()->id())
+            ->latest()
+            ->get();
 
         return view('tasks.edit', [
             'task' => $task,
