@@ -6,13 +6,6 @@
             </h2>
 
             <div class="flex items-center gap-3">
-                <a href="{{ route('tasks.create', ['project_id' => $project->id]) }}"
-                class="inline-flex items-center px-4 py-2 rounded-md
-                        border border-white/20 bg-white/10
-                        text-sm font-medium text-white
-                        hover:bg-white/20 transition">
-                    タスク追加
-                </a>
                 @can('delete', $project)
                     <form action="{{ route('projects.destroy', $project) }}" method="POST"
                         onsubmit="return confirm('このプロジェクトを削除しますか？紐づくタスクも削除されます。')">
@@ -67,7 +60,18 @@
             {{-- Tasks --}}
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <h3 class="text-lg font-semibold mb-4">タスク一覧</h3>
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold">タスク一覧</h3>
+                        
+                        <a href="{{ route('tasks.create', ['project_id' => $project->id]) }}"
+                        class="inline-flex items-center gap-2 px-4 py-2 rounded-md
+                                bg-slate-800 text-white
+                                text-sm font-medium
+                                hover:bg-slate-700 transition">
+                            <span class="text-lg leading-none">＋</span>
+                            タスク追加
+                        </a>
+                    </div>
 
                     @if($project->tasks->isEmpty())
                         <p class="text-gray-500">まだタスクがありません。</p>
