@@ -50,6 +50,10 @@
                     <div class="text-sm text-gray-500 dark:text-gray-400">
                         作成日: {{ $project->created_at->format('Y-m-d H:i') }}
                     </div>
+
+                    <div class="text-sm text-gray-500 dark:text-gray-400">
+                        概要: {{ $project->description }}
+                    </div>
                 </div>
             </div>
 
@@ -61,44 +65,49 @@
             @endif
 
             {{-- Tasks --}}
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <h3 class="font-semibold text-lg mb-4">タスク一覧</h3>
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
+                    <h3 class="text-lg font-semibold mb-4">タスク一覧</h3>
 
                     @if($project->tasks->isEmpty())
-                        <p class="text-gray-500 dark:text-gray-400">まだタスクがありません。</p>
+                        <p class="text-gray-500">まだタスクがありません。</p>
                     @else
                         <div class="overflow-x-auto">
                             <table class="min-w-full text-sm">
-                                <thead class="text-left text-gray-600 dark:text-gray-300">
+                                <thead class="text-left text-gray-500 border-b">
                                     <tr>
-                                        <th class="py-2">タイトル</th>
-                                        <th class="py-2">ステータス</th>
-                                        <th class="py-2">期限</th>
-                                        <th class="py-2">作成日</th>
-                                        <th class="py-2">操作</th>
-
+                                        <th class="py-3 pr-6 font-medium">タイトル</th>
+                                        <th class="py-3 pr-6 font-medium">ステータス</th>
+                                        <th class="py-3 pr-6 font-medium">期限</th>
+                                        <th class="py-3 pr-6 font-medium">作成日</th>
+                                        <th class="py-3 font-medium">操作</th>
                                     </tr>
                                 </thead>
-                                <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+
+                                <tbody class="divide-y">
                                     @foreach($project->tasks as $task)
                                         <tr>
-                                            <td class="py-3">
+                                            <td class="py-4 pr-6">
                                                 {{ $task->title }}
                                             </td>
-                                            <td class="py-3">{{ $task->status }}</td>
-                                            <td class="py-3">
+
+                                            <td class="py-4 pr-6">
+                                                {{ $task->status }}
+                                            </td>
+
+                                            <td class="py-4 pr-6">
                                                 {{ $task->due_date ? \Carbon\Carbon::parse($task->due_date)->format('Y-m-d') : '-' }}
                                             </td>
-                                            <td class="py-3">{{ $task->created_at->format('Y-m-d') }}</td>
-                                            <td class="py-2">
+
+                                            <td class="py-4 pr-6">
+                                                {{ $task->created_at->format('Y-m-d') }}
+                                            </td>
+
+                                            <td class="py-4">
                                                 <div class="flex items-center gap-2 whitespace-nowrap">
                                                     @can('update', $task)
                                                         <a href="{{ route('tasks.edit', $task) }}"
-                                                        class="inline-flex rounded-md
-                                                        border border-gray-800 bg-white
-                                                        px-3 py-1 text-sm font-medium text-gray-800
-                                                        hover:bg-gray-100 transition">
+                                                        class="inline-flex items-center px-3 py-1 rounded-md border border-gray-300 bg-white text-sm font-medium text-gray-800 hover:bg-gray-50 transition">
                                                             編集
                                                         </a>
                                                     @endcan
@@ -110,16 +119,12 @@
                                                             @method('DELETE')
 
                                                             <button type="submit"
-                                                                class="inline-flex items-center rounded-md
-                                                                    bg-rose-600 text-white border border-rose-600
-                                                                    px-3 py-1 text-sm font-medium text-white
-                                                                    hover:bg-rose-700 hover:border-rose-700 transition">
-                                                                    削除
+                                                                    class="inline-flex items-center px-3 py-1 rounded-md bg-rose-600 text-white text-sm font-medium hover:bg-rose-700 transition">
+                                                                削除
                                                             </button>
                                                         </form>
                                                     @endcan
-
-                                                </div>                                                
+                                                </div>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -129,6 +134,7 @@
                     @endif
                 </div>
             </div>
+
 
         </div>
     </div>
