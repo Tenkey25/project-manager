@@ -93,7 +93,7 @@
                                             <td class="py-3">{{ $task->created_at->format('Y-m-d') }}</td>
                                             <td class="py-2">
                                                 <div class="flex items-center gap-2 whitespace-nowrap">
-                                                    @can('update', $project)
+                                                    @can('update', $task)
                                                         <a href="{{ route('tasks.edit', $task) }}"
                                                         class="inline-flex rounded-md
                                                         border border-gray-800 bg-white
@@ -103,7 +103,7 @@
                                                         </a>
                                                     @endcan
 
-                                                    @can('delete', $project)
+                                                    @can('delete', $task)
                                                         <form action="{{ route('tasks.destroy', $task) }}" method="POST"
                                                             onsubmit="return confirm('このタスクを削除しますか？')">
                                                             @csrf
