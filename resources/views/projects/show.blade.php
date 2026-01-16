@@ -62,7 +62,7 @@
                 <div class="p-6 text-gray-900">
                     <div class="flex items-center justify-between mb-4">
                         <h3 class="text-lg font-semibold">タスク一覧</h3>
-                        
+
                         <a href="{{ route('tasks.create', ['project_id' => $project->id]) }}"
                         class="inline-flex items-center gap-2 px-4 py-2 rounded-md
                                 bg-slate-800 text-white
@@ -139,7 +139,17 @@
                 </div>
             </div>
 
-
+            <div class="mt-6 flex justify-center">
+                <a href="{{ route('projects.index') }}"
+                class="inline-flex items-center px-4 py-2 rounded-md
+                        bg-gray-200 text-gray-700 border border-gray-200
+                        text-sm font-medium
+                        hover:bg-gray-300 hover:border-gray-300
+                        transition">
+                    ← プロジェクト一覧へ戻る
+                </a>
+            </div>
+            
         </div>
     </div>
 </x-app-layout>
