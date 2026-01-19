@@ -103,7 +103,24 @@
                                             </td>
 
                                             <td class="py-4 pr-6">
-                                                {{ $task->status }}
+                                                @can('update', $task)
+                                                    <form action="{{ route('tasks.updateStatus', $task) }}" method="POST">
+                                                        @csrf
+                                                        @method('PATCH')
+
+                                                        <select
+                                                            name="status"
+                                                            onchange="this.form.submit()"
+                                                            class="rounded border-gray-300 text-sm"
+                                                        >
+                                                            <option value="todo"  @selected($task->status === 'todo')>todo</option>
+                                                            <option value="doing" @selected($task->status === 'doing')>doing</option>
+                                                            <option value="done"  @selected($task->status === 'done')>done</option>
+                                                        </select>
+                                                    </form>
+                                                @else
+                                                    <span class="text-gray-700">{{ $task->status }}</span>
+                                                @endcan
                                             </td>
 
                                             <td class="py-4 pr-6">

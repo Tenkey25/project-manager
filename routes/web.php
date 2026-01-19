@@ -30,6 +30,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('projects', ProjectController::class);
     Route::resource('tasks', TaskController::class);
+    Route::patch('/tasks/{task}/status', [TaskController::class, 'updateStatus'])
+    ->name('tasks.updateStatus');   //ステータス更新用
+
 });
 
 require __DIR__.'/auth.php';

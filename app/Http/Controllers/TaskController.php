@@ -134,4 +134,23 @@ class TaskController extends Controller
             ->route('projects.show', $project)
             ->with('success', 'タスクを削除しました');
         }
+
+
+    /**
+     * プロジェクト詳細画面にてタスクのステータスのみを切り替えるメソッド
+     */
+    public function updateStatus(Request $request, Task $task)
+    {
+        $this->authorize('update', $task);
+
+        $request->validate([
+            'status' => ['required', 'in:todo,doing,done'],
+        ]);
+
+        $task->update([
+            'status' => $request->status,
+        ]);
+
+        return back();
+    }
 }
