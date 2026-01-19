@@ -45,20 +45,29 @@
             @endif
 
             {{-- Project info --}}
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white bg-indigo-50/70 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100 space-y-2">
                     <div class="flex items-center gap-3">
-                        <span class="text-sm text-gray-500 dark:text-gray-400">プロジェクトステータス</span>
-                        <span class="px-2 py-1 text-xs rounded bg-gray-100 dark:bg-gray-700">
-                            {{ $project->status }}
-                        </span>
+                        <span class="text-sm text-gray-500 text-gray-700">プロジェクトステータス</span>
+                        @php
+                            $statusClasses = match ($project->status) {
+                                'todo'  => 'bg-gray-200 text-gray-700',
+                                'doing' => 'bg-blue-100 text-blue-700',
+                                'done'  => 'bg-green-100 text-green-700',
+                                default => 'bg-gray-200 text-gray-700',
+                            };
+                        @endphp
+
+                    <span class="inline-flex items-center px-2 py-1 text-xs rounded {{ $statusClasses }}">
+                        {{ $project->status }}
+                    </span>
                     </div>
 
-                    <div class="text-sm text-gray-500 dark:text-gray-400">
+                    <div class="text-sm text-gray-700">
                         期限: {{ $project->end_date?->format('Y-m-d') }}
                     </div>
 
-                    <div class="text-sm text-gray-500 dark:text-gray-400">
+                    <div class="text-sm text-gray-700">
                         概要: {{ $project->description }}
                     </div>
                 </div>
@@ -88,7 +97,7 @@
                                 <thead class="text-left text-gray-500 border-b">
                                     <tr>
                                         <th class="py-3 pr-6">タスク名</th>
-                                        <th class="py-3 pr-6">ステータス</th>
+                                        <th class="py-3 pr-6">タスクステータス</th>
                                         <th class="py-3 pr-6">期限</th>
                                         <th class="py-3 pr-6">作成日</th>
                                         <th class="py-3">操作</th>
