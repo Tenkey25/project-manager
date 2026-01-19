@@ -108,7 +108,7 @@
                                 <thead class="text-left text-gray-500 border-b">
                                     <tr>
                                         <th class="py-3 pr-6">プロジェクト名</th>
-                                        <th class="py-3 pr-6">ステータス</th>
+                                        <th class="py-3 pr-6">プロジェクトステータス</th>
                                         <th class="py-3 pr-6">期限</th>
                                         <th class="py-3 pr-6">作成日</th>
                                         <th class="py-3">操作</th>
@@ -123,6 +123,22 @@
                                                     class="font-medium text-indigo-600 hover:text-indigo-800 hover:underline transition">
                                                     {{ $project->name }}
                                                 </a>
+                                            <div class="mt-3.5 flex flex-wrap gap-2 text-xs">
+                                                <div>
+                                                    タスク状況：
+                                                    <span class="inline-flex items-center rounded bg-gray-200 px-2 py-0.5 text-gray-700">
+                                                        todo {{ $project->tasks_todo_count }}
+                                                    </span>
+
+                                                    <span class="inline-flex items-center rounded bg-blue-100 px-2 py-0.5 text-blue-700">
+                                                        doing {{ $project->tasks_doing_count }}
+                                                    </span>
+
+                                                    <span class="inline-flex items-center rounded bg-green-100 px-2 py-0.5 text-green-700">
+                                                        done {{ $project->tasks_done_count }}
+                                                    </span>
+                                                </div>
+                                            </div>
                                             </td>
 
                                             <td class="py-4 pr-6">

@@ -24,9 +24,15 @@ class ProjectController extends Controller
         
         $projects = Project::query()
         ->ownedBy(auth()->id())
+        ->withcount([
+            'tasks as tasks_todo_count' => fn ($q) => $q->where('status', 'todo'),
+            'tasks as tasks_doing_count' => fn ($q) => $q->where('status', 'doing'),
+            'tasks as tasks_done_count' => fn ($q) => $q->where('status', 'done'),
+        ])
         ->search($request->q)
         ->status($request->status)
         ->sort($request->input('sort', 'created_desc'))
+        ->latest()
         ->paginate(10)
         ->withQueryString();
 
