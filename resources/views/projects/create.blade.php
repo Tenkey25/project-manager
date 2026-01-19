@@ -75,8 +75,14 @@
                             登録
                         </button>
 
+                        @php
+                            $from = request('from');
+                        @endphp
+
                         <a
-                            href="{{ route('dashboard') }}"
+                            href="{{ $from === 'index'
+                                ? route('projects.index')
+                                : route('dashboard') }}"
                             class="inline-flex items-center rounded-md
                                 px-4 py-2 text-slate-600 border border-black
                                 hover:bg-slate-100 hover:text-slate-800

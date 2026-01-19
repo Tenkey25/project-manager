@@ -15,7 +15,7 @@
                     </div>
                 @endif
 
-                <form method="POST" action="{{ route('projects.update', $project) }}">
+                <form method="POST" action="{{ route('projects.update', ['project' => $project, 'from' => 'show']) }}">
                     @csrf
                     @method('PUT')
 
@@ -64,15 +64,14 @@
                         @enderror
                     </div>
 
-                    <div class="flex items-center justify-between">
+                    <div class="flex items-center justify-between">    
+                        @php
+                            $from = request('from');
+                        @endphp
                         <button type="submit"
                                 class="inline-flex items-center rounded-md bg-slate-700 px-4 py-2 text-white hover:bg-slate-600 transition">
                             更新
                         </button>
-
-                        @php
-                            $from = request('from');
-                        @endphp
 
                         <a
                             href="{{ $from === 'show'

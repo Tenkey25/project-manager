@@ -87,11 +87,19 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-            $project->update($request->validated());
+        $project->update($request->validated());
 
+        $from = $request->input('from') ?? $request->query('from');
+
+        if ($from === 'show') {
             return redirect()
                 ->route('projects.show', $project)
                 ->with('success', 'プロジェクトを更新しました');
+        }
+
+        return redirect()
+            ->route('projects.index')
+            ->with('success', 'プロジェクトを更新しました');
 
     }
 

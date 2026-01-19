@@ -5,7 +5,7 @@
             プロジェクト一覧
             </h2>
 
-            <a href="{{ route('projects.create') }}"
+            <a href="{{ route('projects.create' , ['from' => 'index']) }}"
                 class="inline-flex items-center rounded-md border border-white/20 bg-white/10 px-4 py-2
                 text-sm font-medium text-white hover:bg-white/20 transition">
                 プロジェクト登録
@@ -15,13 +15,6 @@
 
     <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-
-            {{-- 成功メッセージ --}}
-            @if (session('success'))
-                <div class="mb-4 rounded-lg bg-green-600 px-4 py-3 text-white shadow">
-                    {{ session('success') }}
-                </div>
-            @endif
 
             {{-- 検索 / フィルター --}}
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg bg-indigo-50/70 mb-6">
@@ -97,96 +90,12 @@
                 </div>
             </div>
 
-
-            {{-- プロジェクト一覧テーブル --}}
-            <!-- <div class="overflow-hidden shadow bg-slate-50 sm:rounded-lg">
-                <div class="p-6">
-                    @if ($projects->count() === 0)
-                        <p class="text-gray-600">まだプロジェクトはありません。</p>
-                    @else
-                        <table class="w-full text-left text-gray-500">
-                            <thead>
-                                <tr class="border-b">
-                                    <th class="py-3 pr-6">プロジェクト名</th>
-                                    <th class="py-3 pr-6">ステータス</th>
-                                    <th class="py-3 pr-6">期限</th>
-                                    <th class="py-3 pr-6">作成日</th>
-                                    <th class="py-3 pr-6">操作</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($projects as $project)
-                                    <tr class="border-b">
-                                        <td class="py-2">
-                                            <a href="{{ route('projects.show', $project) }}"
-                                                class="font-medium text-indigo-600 dark:text-indigo-400
-                                                hover:text-indigo-800 dark:hover:text-indigo-300
-                                                hover:underline transition">
-                                            {{ $project->name }}
-                                            </a>
-                                        </td>
-                                        <td class="py-2">
-                                            @can('update', $project)
-                                                <form action="{{ route('projects.updateStatus', $project) }}" method="POST">
-                                                    @csrf
-                                                    @method('PATCH')
-
-                                                    <select
-                                                        name="status"
-                                                        onchange="this.form.submit()"
-                                                        class="rounded border-gray-300 text-sm"
-                                                    >
-                                                        <option value="todo"  @selected($project->status === 'todo')>todo</option>
-                                                        <option value="doing" @selected($project->status === 'doing')>doing</option>
-                                                        <option value="done"  @selected($project->status === 'done')>done</option>
-                                                    </select>
-                                                </form>
-                                            @else
-                                                <span class="text-gray-700">{{ $project->status }}</span>
-                                            @endcan
-                                        </td>
-                                        <td class="py-2">{{ $project->end_date?->format('Y-m-d') }}</td>
-                                        <td class="py-2">{{ $project->created_at?->format('Y-m-d') }}</td>
-                                        <td class="py-2">
-                                            <div class="flex items-center gap-2 whitespace-nowrap">
-                                                @can('update', $project)
-                                                    <a href="{{ route('projects.edit', ['project' => $project, 'from' => 'index']) }}"
-                                                    class="inline-flex items-center rounded-md
-                                                            border border-gray-800 bg-slate-50
-                                                            px-3 py-1 text-sm font-medium text-gray-800
-                                                            hover:bg-gray-100 transition">
-                                                        編集
-                                                    </a>
-                                                @endcan
-
-                                                @can('delete', $project)
-                                                    <form action="{{ route('projects.destroy', $project) }}" method="POST"
-                                                        onsubmit="return confirm('このプロジェクトを削除しますか？')">
-                                                        @csrf
-                                                        @method('DELETE')
-
-                                                        <button type="submit"
-                                                                class="inline-flex items-center rounded-md
-                                                                    bg-rose-600 text-white border border-rose-600
-                                                                    px-3 py-1 text-sm font-medium
-                                                                    hover:bg-rose-700 hover:border-rose-700 transition">
-                                                            削除
-                                                        </button>
-                                                    </form>
-                                                @endcan
-                                            </div>                                                
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-
-                        <div class="mt-4">
-                            {{ $projects->links() }}
-                        </div>
-                    @endif
+            {{-- 成功メッセージ --}}
+            @if (session('success'))
+                <div class="mb-4 rounded-lg bg-green-600 px-4 py-3 text-white shadow">
+                    {{ session('success') }}
                 </div>
-            </div> -->
+            @endif
 
             {{-- プロジェクト一覧テーブル --}}
             <div class="bg-slate-50 overflow-hidden shadow-sm sm:rounded-lg">
