@@ -111,4 +111,21 @@ class ProjectController extends Controller
             ->route('projects.index')
             ->with('success', 'プロジェクトを削除しました');
     }
+
+    /**
+     * プロジェクト詳細画面にてタスクのステータスのみを切り替えるメソッド
+     */
+    public function updateStatus(Request $request, Project $project)
+    {
+
+        $request->validate([
+            'status' => ['required', 'in:todo,doing,done'],
+        ]);
+
+        $project->update([
+            'status' => $request->status,
+        ]);
+
+        return back();
+    }
 }

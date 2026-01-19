@@ -30,8 +30,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('projects', ProjectController::class);
     Route::resource('tasks', TaskController::class);
+    Route::patch('/projects/{project}/status', [ProjectController::class, 'updateStatus'])
+    ->name('projects.updateStatus');   //プロジェクトのステータス更新用
     Route::patch('/tasks/{task}/status', [TaskController::class, 'updateStatus'])
-    ->name('tasks.updateStatus');   //ステータス更新用
+    ->name('tasks.updateStatus');   //タスクのステータス更新用
 
 });
 

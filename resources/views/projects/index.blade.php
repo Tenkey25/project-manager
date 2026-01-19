@@ -127,7 +127,26 @@
                                             {{ $project->name }}
                                             </a>
                                         </td>
-                                        <td class="py-2">{{ $project->status }}</td>
+                                        <td class="py-2">
+                                            @can('update', $project)
+                                                <form action="{{ route('projects.updateStatus', $project) }}" method="POST">
+                                                    @csrf
+                                                    @method('PATCH')
+
+                                                    <select
+                                                        name="status"
+                                                        onchange="this.form.submit()"
+                                                        class="rounded border-gray-300 text-sm"
+                                                    >
+                                                        <option value="todo"  @selected($project->status === 'todo')>todo</option>
+                                                        <option value="doing" @selected($project->status === 'doing')>doing</option>
+                                                        <option value="done"  @selected($project->status === 'done')>done</option>
+                                                    </select>
+                                                </form>
+                                            @else
+                                                <span class="text-gray-700">{{ $project->status }}</span>
+                                            @endcan
+                                        </td>
                                         <td class="py-2">{{ $project->end_date?->format('Y-m-d') }}</td>
                                         <td class="py-2">{{ $project->created_at?->format('Y-m-d') }}</td>
                                         <td class="py-2">

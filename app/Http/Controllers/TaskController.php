@@ -141,7 +141,6 @@ class TaskController extends Controller
      */
     public function updateStatus(Request $request, Task $task)
     {
-        $this->authorize('update', $task);
 
         $request->validate([
             'status' => ['required', 'in:todo,doing,done'],
