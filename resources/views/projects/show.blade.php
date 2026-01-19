@@ -55,7 +55,7 @@
                     </div>
 
                     <div class="text-sm text-gray-500 dark:text-gray-400">
-                        期限: {{ $project->end_date->format('Y-m-d') }}
+                        期限: {{ $project->end_date?->format('Y-m-d') }}
                     </div>
 
                     <div class="text-sm text-gray-500 dark:text-gray-400">
@@ -87,7 +87,7 @@
                             <table class="min-w-full text-sm">
                                 <thead class="text-left text-gray-500 border-b">
                                     <tr>
-                                        <th class="py-3 pr-6">タイトル</th>
+                                        <th class="py-3 pr-6">タスク名</th>
                                         <th class="py-3 pr-6">ステータス</th>
                                         <th class="py-3 pr-6">期限</th>
                                         <th class="py-3 pr-6">作成日</th>

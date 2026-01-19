@@ -99,7 +99,7 @@
 
 
             {{-- プロジェクト一覧テーブル --}}
-            <div class="overflow-hidden shadow bg-slate-50 sm:rounded-lg">
+            <!-- <div class="overflow-hidden shadow bg-slate-50 sm:rounded-lg">
                 <div class="p-6">
                     @if ($projects->count() === 0)
                         <p class="text-gray-600">まだプロジェクトはありません。</p>
@@ -107,8 +107,7 @@
                         <table class="w-full text-left text-gray-500">
                             <thead>
                                 <tr class="border-b">
-                                    <th class="py-3 pr-6">ID</th>
-                                    <th class="py-3 pr-6">名前</th>
+                                    <th class="py-3 pr-6">プロジェクト名</th>
                                     <th class="py-3 pr-6">ステータス</th>
                                     <th class="py-3 pr-6">期限</th>
                                     <th class="py-3 pr-6">作成日</th>
@@ -118,7 +117,6 @@
                             <tbody>
                                 @foreach ($projects as $project)
                                     <tr class="border-b">
-                                        <td class="py-2">{{ $project->id }}</td>
                                         <td class="py-2">
                                             <a href="{{ route('projects.show', $project) }}"
                                                 class="font-medium text-indigo-600 dark:text-indigo-400
@@ -188,7 +186,97 @@
                         </div>
                     @endif
                 </div>
+            </div> -->
+
+            {{-- プロジェクト一覧テーブル --}}
+            <div class="bg-slate-50 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
+                    @if ($projects->count() === 0)
+                        <p class="text-gray-500">まだプロジェクトはありません。</p>
+                    @else
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full text-sm">
+                                <thead class="text-left text-gray-500 border-b">
+                                    <tr>
+                                        <th class="py-3 pr-6">プロジェクト名</th>
+                                        <th class="py-3 pr-6">ステータス</th>
+                                        <th class="py-3 pr-6">期限</th>
+                                        <th class="py-3 pr-6">作成日</th>
+                                        <th class="py-3">操作</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody class="divide-y">
+                                    @foreach ($projects as $project)
+                                        <tr>
+                                            <td class="py-4 pr-6">
+                                                <a href="{{ route('projects.show', $project) }}"
+                                                    class="font-medium text-indigo-600 hover:text-indigo-800 hover:underline transition">
+                                                    {{ $project->name }}
+                                                </a>
+                                            </td>
+
+                                            <td class="py-4 pr-6">
+                                                @can('update', $project)
+                                                    <form action="{{ route('projects.updateStatus', $project) }}" method="POST">
+                                                        @csrf
+                                                        @method('PATCH')
+
+                                                        <select
+                                                            name="status"
+                                                            onchange="this.form.submit()"
+                                                            class="rounded border-gray-300 text-sm"
+                                                        >
+                                                            <option value="todo"  @selected($project->status === 'todo')>todo</option>
+                                                            <option value="doing" @selected($project->status === 'doing')>doing</option>
+                                                            <option value="done"  @selected($project->status === 'done')>done</option>
+                                                        </select>
+                                                    </form>
+                                                @else
+                                                    <span class="text-gray-700">{{ $project->status }}</span>
+                                                @endcan
+                                            </td>
+
+                                            <td class="py-4 pr-6">{{ $project->end_date?->format('Y-m-d') }}</td>
+
+                                            <td class="py-4 pr-6">{{ $project->created_at?->format('Y-m-d') }}</td>
+
+                                            <td class="py-4">
+                                                <div class="flex items-center gap-2 whitespace-nowrap">
+                                                    @can('update', $project)
+                                                        <a href="{{ route('projects.edit', ['project' => $project, 'from' => 'index']) }}"
+                                                            class="inline-flex items-center px-3 py-1 rounded-md border border-gray-300 bg-slate-50 text-sm font-medium text-gray-800 hover:bg-gray-50 transition">
+                                                            編集
+                                                        </a>
+                                                    @endcan
+
+                                                    @can('delete', $project)
+                                                        <form action="{{ route('projects.destroy', $project) }}" method="POST"
+                                                            onsubmit="return confirm('このプロジェクトを削除しますか？')">
+                                                            @csrf
+                                                            @method('DELETE')
+
+                                                            <button type="submit"
+                                                                class="inline-flex items-center px-3 py-1 rounded-md bg-rose-600 text-white text-sm font-medium hover:bg-rose-700 transition">
+                                                                削除
+                                                            </button>
+                                                        </form>
+                                                    @endcan
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="mt-4">
+                            {{ $projects->links() }}
+                        </div>
+                    @endif
+                </div>
             </div>
+
 
             {{-- ホームへ戻るボタン --}}
             <div class="mt-6 flex justify-center">
