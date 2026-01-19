@@ -104,15 +104,15 @@
                     @if ($projects->count() === 0)
                         <p class="text-gray-600">まだプロジェクトはありません。</p>
                     @else
-                        <table class="w-full text-left">
+                        <table class="w-full text-left text-gray-500">
                             <thead>
                                 <tr class="border-b">
-                                    <th class="py-2">ID</th>
-                                    <th class="py-2">名前</th>
-                                    <th class="py-2">ステータス</th>
-                                    <th class="py-2">期限</th>
-                                    <th class="py-2">作成日</th>
-                                    <th class="py-2">操作</th>
+                                    <th class="py-3 pr-6">ID</th>
+                                    <th class="py-3 pr-6">名前</th>
+                                    <th class="py-3 pr-6">ステータス</th>
+                                    <th class="py-3 pr-6">期限</th>
+                                    <th class="py-3 pr-6">作成日</th>
+                                    <th class="py-3 pr-6">操作</th>
                                 </tr>
                             </thead>
                             <tbody>

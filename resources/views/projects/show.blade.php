@@ -87,11 +87,11 @@
                             <table class="min-w-full text-sm">
                                 <thead class="text-left text-gray-500 border-b">
                                     <tr>
-                                        <th class="py-3 pr-6 font-medium">タイトル</th>
-                                        <th class="py-3 pr-6 font-medium">ステータス</th>
-                                        <th class="py-3 pr-6 font-medium">期限</th>
-                                        <th class="py-3 pr-6 font-medium">作成日</th>
-                                        <th class="py-3 font-medium">操作</th>
+                                        <th class="py-3 pr-6">タイトル</th>
+                                        <th class="py-3 pr-6">ステータス</th>
+                                        <th class="py-3 pr-6">期限</th>
+                                        <th class="py-3 pr-6">作成日</th>
+                                        <th class="py-3">操作</th>
                                     </tr>
                                 </thead>
 
