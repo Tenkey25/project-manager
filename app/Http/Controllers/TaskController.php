@@ -93,6 +93,7 @@ class TaskController extends Controller
         return view('tasks.edit', [
             'task' => $task,
             'projects' => $projects,
+            'from' => request('from'),    
             'selectedProjectId' => $task->project_id,
         ]);
     }

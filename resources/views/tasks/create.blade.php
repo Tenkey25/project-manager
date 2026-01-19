@@ -8,6 +8,14 @@
     <div class="py-6">
         <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white shadow sm:rounded-lg p-6">
+
+            @php
+                $from = request('from');
+                $backUrl = $from === 'show' && request('project_id')
+                    ? route('projects.show', request('project_id'))
+                    : route('dashboard');
+            @endphp
+
                 @include('tasks._form', [
                     'task' => null,
                     'action' => route('tasks.store'),
@@ -15,6 +23,7 @@
                     'submitLabel' => '登録',
                     'showProjectSelect' => true,
                     'projects' => $projects,
+                    'backUrl' => $backUrl,
                     'selectedProjectId' => $selectedProjectId ?? '',
                 ])
             </div>

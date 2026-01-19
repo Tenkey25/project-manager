@@ -7,7 +7,7 @@
 
             <div class="flex items-center gap-3">
 
-                <a href="{{ route('projects.edit', ['project' => $project, 'from' => 'show']) }}"
+                <a href="{{ route('projects.edit', ['project' => $project, 'from' => 'index']) }}"
                     class="inline-flex items-center rounded-md border border-white/20 bg-white/10 px-4 py-2
                     text-sm font-medium text-white hover:bg-white/20 transition">
                     プロジェクト編集
@@ -70,7 +70,7 @@
                     <div class="flex items-center justify-between mb-4">
                         <h3 class="text-lg font-semibold">タスク一覧</h3>
 
-                        <a href="{{ route('tasks.create', ['project_id' => $project->id]) }}"
+                        <a href="{{ route('tasks.create', [ 'from' => 'show', 'project_id' => $project->id]) }}"
                         class="inline-flex items-center gap-2 px-4 py-2 rounded-md
                                 bg-slate-700 text-white
                                 text-sm font-medium
@@ -117,7 +117,7 @@
                                             <td class="py-4">
                                                 <div class="flex items-center gap-2 whitespace-nowrap">
                                                     @can('update', $task)
-                                                        <a href="{{ route('tasks.edit', $task) }}"
+                                                        <a href="{{ route('tasks.edit', ['task' => $task, 'from' => 'show', 'project_id' => $project->id]) }}"
                                                         class="inline-flex items-center px-3 py-1 rounded-md border border-gray-300 bg-slate-50 text-sm font-medium text-gray-800 hover:bg-gray-50 transition">
                                                             編集
                                                         </a>
@@ -156,7 +156,6 @@
                     ← プロジェクト一覧へ戻る
                 </a>
             </div>
-
         </div>
     </div>
 </x-app-layout>

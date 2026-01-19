@@ -32,12 +32,23 @@
             <div class="overflow-hidden bg-white shadow sm:rounded-lg">
                 <div class="p-6">
 
+                    @php
+                        $from = request('from');
+
+                        $backUrl = $from === 'show'  && request('project_id')
+                            ? route('projects.show', request('project_id'))
+                            : route('dashboard'); 
+                    @endphp
+
                     @include('tasks._form', [
                         'task' => $task,
+                        'projects' => $projects,
+                        'selectedProjectId' => $selectedProjectId,
                         'action' => route('tasks.update', $task),
                         'method' => 'PUT',
                         'submitLabel' => '更新',
-                        'showProjectSelect' => false,
+                        'showProjectSelect' => true,
+                        'backUrl' => $backUrl,
                     ])
                     
                 </div>
