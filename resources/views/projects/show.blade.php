@@ -55,7 +55,7 @@
                     </div>
 
                     <div class="text-sm text-gray-500 dark:text-gray-400">
-                        作成日: {{ $project->created_at->format('Y-m-d H:i') }}
+                        期限: {{ $project->end_date->format('Y-m-d') }}
                     </div>
 
                     <div class="text-sm text-gray-500 dark:text-gray-400">
