@@ -24,7 +24,7 @@
             @endif
 
             {{-- 検索 / フィルター --}}
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-6">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg bg-indigo-50/70 mb-6">
                 <div class="p-6">
                     <form method="GET" action="{{ route('projects.index') }}" class="space-y-4">
                         <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-end">
@@ -37,7 +37,7 @@
                                     type="text"
                                     value="{{ request('q') }}"
                                     placeholder="プロジェクト名 / 説明で検索"
-                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm
+                                    class="mt-1 block w-full rounded-md border-gray-300 bg-indigo-50/60 shadow-sm
                                         focus:border-slate-500 focus:ring-slate-500"
                                 >
                             </div>
@@ -48,7 +48,7 @@
                                 <select
                                     id="status"
                                     name="status"
-                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm
+                                    class="mt-1 block w-full rounded-md border-gray-300 bg-indigo-50/60 shadow-sm
                                         focus:border-slate-500 focus:ring-slate-500"
                                 >
                                     <option value="">すべて</option>
@@ -64,7 +64,7 @@
                                 <select
                                     id="sort"
                                     name="sort"
-                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm
+                                    class="mt-1 block w-full rounded-md border-gray-300 bg-indigo-50/60 shadow-sm
                                         focus:border-slate-500 focus:ring-slate-500"
                                 >
                                     <option value="created_desc" @selected(request('sort','created_desc') === 'created_desc')>作成日（新しい順）</option>
@@ -99,7 +99,7 @@
 
 
             {{-- プロジェクト一覧テーブル --}}
-            <div class="overflow-hidden bg-white shadow sm:rounded-lg">
+            <div class="overflow-hidden shadow bg-slate-50 sm:rounded-lg">
                 <div class="p-6">
                     @if ($projects->count() === 0)
                         <p class="text-gray-600">まだプロジェクトはありません。</p>
@@ -135,7 +135,7 @@
                                                 @can('update', $project)
                                                     <a href="{{ route('projects.edit', ['project' => $project, 'from' => 'index']) }}"
                                                     class="inline-flex items-center rounded-md
-                                                            border border-gray-800 bg-white
+                                                            border border-gray-800 bg-slate-50
                                                             px-3 py-1 text-sm font-medium text-gray-800
                                                             hover:bg-gray-100 transition">
                                                         編集

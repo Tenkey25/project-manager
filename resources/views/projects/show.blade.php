@@ -65,7 +65,7 @@
             </div>
 
             {{-- Tasks --}}
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-slate-50 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div class="flex items-center justify-between mb-4">
                         <h3 class="text-lg font-semibold">タスク一覧</h3>
@@ -118,7 +118,7 @@
                                                 <div class="flex items-center gap-2 whitespace-nowrap">
                                                     @can('update', $task)
                                                         <a href="{{ route('tasks.edit', $task) }}"
-                                                        class="inline-flex items-center px-3 py-1 rounded-md border border-gray-300 bg-white text-sm font-medium text-gray-800 hover:bg-gray-50 transition">
+                                                        class="inline-flex items-center px-3 py-1 rounded-md border border-gray-300 bg-slate-50 text-sm font-medium text-gray-800 hover:bg-gray-50 transition">
                                                             編集
                                                         </a>
                                                     @endcan
