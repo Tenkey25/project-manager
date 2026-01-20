@@ -50,16 +50,27 @@
                         rounded-lg p-6 space-y-4">
 
                 <div class="grid grid-cols-[12rem_1fr] gap-y-3 items-start">
-
+                    
                     {{-- ステータス --}}
                     <div class="text-sm font-semibold text-slate-300 tracking-wide">
                         プロジェクトステータス
                     </div>
+
                     <div>
-                        <span class="inline-flex items-center px-2 py-1 text-xs rounded bg-green-100 text-green-700">
-                            done
+                        @php
+                            $statusClasses = match ($project->status) {
+                                'todo'  => 'bg-gray-200 text-gray-700',
+                                'doing' => 'bg-blue-100 text-blue-700',
+                                'done'  => 'bg-green-100 text-green-700',
+                                default => 'bg-gray-200 text-gray-700',
+                            };
+                        @endphp
+
+                        <span class="inline-flex items-center px-2 py-1 text-xs rounded {{ $statusClasses }}">
+                            {{ $project->status }}
                         </span>
                     </div>
+
 
                     {{-- 期限 --}}
                     <div class="text-sm font-semibold text-slate-300 tracking-wide">
