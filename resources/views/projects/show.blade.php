@@ -45,31 +45,38 @@
             @endif
 
             {{-- Project info --}}
-            <div class="bg-white bg-indigo-50/70 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100 space-y-2">
-                    <div class="flex items-center gap-3">
-                        <span class="text-sm text-gray-500 text-gray-700">プロジェクトステータス</span>
-                        @php
-                            $statusClasses = match ($project->status) {
-                                'todo'  => 'bg-gray-200 text-gray-700',
-                                'doing' => 'bg-blue-100 text-blue-700',
-                                'done'  => 'bg-green-100 text-green-700',
-                                default => 'bg-gray-200 text-gray-700',
-                            };
-                        @endphp
+            <div class="bg-white/90 dark:bg-slate-800/80
+                        border border-slate-200 dark:border-slate-700
+                        rounded-lg p-6 space-y-4">
 
-                    <span class="inline-flex items-center px-2 py-1 text-xs rounded {{ $statusClasses }}">
-                        {{ $project->status }}
-                    </span>
+                <div class="grid grid-cols-[12rem_1fr] gap-y-3 items-start">
+
+                    {{-- ステータス --}}
+                    <div class="text-sm font-semibold text-slate-300 tracking-wide">
+                        プロジェクトステータス
+                    </div>
+                    <div>
+                        <span class="inline-flex items-center px-2 py-1 text-xs rounded bg-green-100 text-green-700">
+                            done
+                        </span>
                     </div>
 
-                    <div class="text-sm text-gray-700">
-                        期限: {{ $project->end_date?->format('Y-m-d') }}
+                    {{-- 期限 --}}
+                    <div class="text-sm font-semibold text-slate-300 tracking-wide">
+                        期限
+                    </div>
+                    <div class="text-base text-white">
+                        2026-01-23
                     </div>
 
-                    <div class="text-sm text-gray-700">
-                        概要: {{ $project->description }}
+                    {{-- 概要 --}}
+                    <div class="text-sm font-semibold text-slate-300 tracking-wide">
+                        概要
                     </div>
+                    <div class="text-base text-white leading-relaxed">
+                        こんにちは
+                    </div>
+
                 </div>
             </div>
 
