@@ -84,7 +84,10 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
 
-        return view('projects.edit', compact('project'));
+        return view('projects.edit', [
+            'project' => $project,
+            'from' => request('from'),    
+            ]);
         
     }
 
@@ -95,7 +98,7 @@ class ProjectController extends Controller
     {
         $project->update($request->validated());
 
-        $from = $request->input('from') ?? $request->query('from');
+        $from = $request->query('from');
 
         if ($from === 'show') {
             return redirect()

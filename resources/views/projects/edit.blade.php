@@ -15,7 +15,7 @@
                     </div>
                 @endif
 
-                <form method="POST" action="{{ route('projects.update', ['project' => $project, 'from' => 'show']) }}">
+                <form method="POST" action="{{ route('projects.update', ['project' => $project, 'from' => request('from')]) }}">
                     @csrf
                     @method('PUT')
 
