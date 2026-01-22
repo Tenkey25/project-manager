@@ -77,7 +77,7 @@
                         期限
                     </div>
                     <div class="text-base text-white">
-                        2026-01-23
+                        {{ $project->end_date->format('Y/m/d') }}
                     </div>
 
                     {{-- 概要 --}}
@@ -85,7 +85,7 @@
                         概要
                     </div>
                     <div class="text-base text-white leading-relaxed">
-                        こんにちは
+                        {{ $project->description }}
                     </div>
 
                 </div>
@@ -126,7 +126,10 @@
                                     @foreach($project->tasks as $task)
                                         <tr>
                                             <td class="py-4 pr-6">
-                                                {{ $task->title }}
+                                               <a href="{{ route('tasks.show', $task) }}"
+                                                    class="font-medium text-indigo-600 hover:text-indigo-800 hover:underline transition">
+                                                    {{ $task->title }}
+                                                </a>
                                             </td>
 
                                             <td class="py-4 pr-6">

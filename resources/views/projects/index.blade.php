@@ -123,22 +123,22 @@
                                                     class="font-medium text-indigo-600 hover:text-indigo-800 hover:underline transition">
                                                     {{ $project->name }}
                                                 </a>
-                                            <div class="mt-3.5 flex flex-wrap gap-2 text-xs">
-                                                <div>
-                                                    タスク状況：
-                                                    <span class="inline-flex items-center rounded bg-gray-200 px-2 py-0.5 text-gray-700">
-                                                        todo {{ $project->tasks_todo_count }}
-                                                    </span>
+                                                <div class="mt-3.5 flex flex-wrap gap-2 text-xs">
+                                                    <div>
+                                                        タスク状況：
+                                                        <span class="inline-flex items-center rounded bg-gray-200 px-2 py-0.5 text-gray-700">
+                                                            todo {{ $project->tasks_todo_count }}
+                                                        </span>
 
-                                                    <span class="inline-flex items-center rounded bg-blue-100 px-2 py-0.5 text-blue-700">
-                                                        doing {{ $project->tasks_doing_count }}
-                                                    </span>
+                                                        <span class="inline-flex items-center rounded bg-blue-100 px-2 py-0.5 text-blue-700">
+                                                            doing {{ $project->tasks_doing_count }}
+                                                        </span>
 
-                                                    <span class="inline-flex items-center rounded bg-green-100 px-2 py-0.5 text-green-700">
-                                                        done {{ $project->tasks_done_count }}
-                                                    </span>
+                                                        <span class="inline-flex items-center rounded bg-green-100 px-2 py-0.5 text-green-700">
+                                                            done {{ $project->tasks_done_count }}
+                                                        </span>
+                                                    </div>
                                                 </div>
-                                            </div>
                                             </td>
 
                                             <td class="py-4 pr-6">

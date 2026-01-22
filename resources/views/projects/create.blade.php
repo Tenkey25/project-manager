@@ -22,7 +22,7 @@
                         @method('PATCH')
                     @endif
 
-                    {{-- name --}}
+                    {{-- project_name --}}
                     <div class="mb-4">
                         <label class="block text-sm font-medium text-gray-700">プロジェクト名</label>
                         <input type="text" name="name" value="{{ old('name') }}"

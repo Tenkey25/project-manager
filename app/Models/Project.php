@@ -21,6 +21,13 @@ class Project extends Model
         return $this->hasMany(Task::class);
     }
 
+    public function members()
+    {
+        return $this->belongsToMany(User::class, 'project_members')
+            ->withPivot('role')
+            ->withTimestamps();
+    }
+
     // 自分のプロジェクトだけ
     public function scopeOwnedBy($query, int $userId)
     {
