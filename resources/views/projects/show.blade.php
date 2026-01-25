@@ -15,7 +15,7 @@
 
                 @can('delete', $project)
                     <form action="{{ route('projects.destroy', $project) }}" method="POST"
-                        onsubmit="return confirm('このプロジェクトを削除しますか？紐づくタスクも削除されます。')">
+                        onsubmit="return confirm('このタスクを削除しますか？')">
                         @csrf
                         @method('DELETE')
 
@@ -25,7 +25,7 @@
                                 text-sm font-medium
                                 hover:bg-rose-700 hover:border-rose-700
                                 transition">
-                            プロジェクト削除
+                            タスク削除
                         </button>
                     </form>
                 @endcan
@@ -126,7 +126,7 @@
                                     @foreach($project->tasks as $task)
                                         <tr>
                                             <td class="py-4 pr-6">
-                                               <a href="{{ route('tasks.show', $task) }}"
+                                               <a href="{{ route('tasks.show', ['task' => $task, 'from' => 'show']) }}"
                                                     class="font-medium text-indigo-600 hover:text-indigo-800 hover:underline transition">
                                                     {{ $task->title }}
                                                 </a>

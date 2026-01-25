@@ -28,4 +28,12 @@ class Task extends Model
         return $this->belongsTo(Project::class);
     }
 
+    public function assignees()
+    {
+        return $this->belongsToMany(
+            User::class,
+            'task_assignees' // 中間テーブル名
+        )->withTimestamps();
+    }
+
 }
