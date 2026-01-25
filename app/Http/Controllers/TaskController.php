@@ -106,6 +106,14 @@ class TaskController extends Controller
     {
         $task->update($request->validated());
 
+        $from = $request->query('from');
+
+        if ($from === 'taskshow') {
+            return redirect()
+                ->route('tasks.show', $task)
+                ->with('success', 'タスクを更新しました');
+        }
+
         // プロジェクト詳細へ遷移
         return redirect()
             ->route('projects.show', $task->project_id)
