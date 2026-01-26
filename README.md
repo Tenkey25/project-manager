@@ -58,6 +58,24 @@ Laravel 10 を用いて作成した、プロジェクト・タスク管理アプ
 - Tailwind CSS
 - MySQL
 
+## ダッシュボード
+
+![ダッシュボード画面](images/dashboard.png)
+
+## プロジェクト一覧
+
+![プロジェクト一覧画面](images/project_index.png)
+
+## プロジェクト詳細
+
+![プロジェクト詳細画面](images/project_show.png)
+
+## タスク詳細
+
+![タスク詳細画面](images/task_show.png)
+
+
+
 
 ## 補足
 
