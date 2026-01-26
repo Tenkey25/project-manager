@@ -35,16 +35,20 @@
                     @php
                         $from = request('from');
 
-                        $backUrl = $from === 'show'  && request('project_id')
-                            ? route('projects.show', request('project_id'))
-                            : route('dashboard'); 
+                        if ($from === 'show' && request('project_id')) {
+                            $backUrl = route('projects.show', request('project_id'));
+                        } elseif ($from === 'taskshow' && isset($task)) {
+                            $backUrl = route('tasks.show', $task);
+                        } else {
+                            $backUrl = route('dashboard');
+                        }
                     @endphp
 
                     @include('tasks._form', [
                         'task' => $task,
                         'projects' => $projects,
                         'selectedProjectId' => $selectedProjectId,
-                        'action' => route('tasks.update', $task),
+                        'action' => route('tasks.update', ['task' => $task, 'from' => request('from')]),
                         'method' => 'PUT',
                         'submitLabel' => '更新',
                         'showProjectSelect' => true,

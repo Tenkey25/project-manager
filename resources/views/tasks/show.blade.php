@@ -33,8 +33,10 @@
 
     {{-- 成功メッセージ --}}
     @if (session('success'))
-        <div class="mb-4 rounded-lg bg-green-600 px-4 py-3 text-white shadow">
-            {{ session('success') }}
+        <div class="mt-6 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="rounded-lg bg-green-600 px-6 py-4 text-white shadow">
+                {{ session('success') }}
+            </div>
         </div>
     @endif
 
