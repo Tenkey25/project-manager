@@ -65,7 +65,7 @@ Laravel 10 を用いて作成した、プロジェクト・タスク管理アプ
 
 ## プロジェクト一覧
 
-![プロジェクト一覧画面](images/project_index.png)
+![プロジェクト一覧画面](images/projects_index.png)
 
 ## プロジェクト詳細
 
