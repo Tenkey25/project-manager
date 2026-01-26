@@ -8,9 +8,18 @@ Laravel 10 を用いて作成した、プロジェクト・タスク管理アプ
 
 - Laravel（MVC / Resource Routing / FormRequest）の理解
 - 実務を想定した CRUD 設計
-- 機能単位でのコミット運用
 - UI / UX を意識した画面設計
+- 
 
+## 使用技術
+
+- PHP 8.2
+- Laravel 10
+- Laravel Breeze（認証）
+- Blade
+- Tailwind CSS
+- MySQL
+- 
 
 ## 主な機能
 
@@ -59,14 +68,13 @@ Laravel 10 を用いて作成した、プロジェクト・タスク管理アプ
 - コミットは機能単位で分割
 
 
-## 使用技術
+## これから実装予定・したい機能
 
-- PHP 8.2
-- Laravel 10
-- Laravel Breeze（認証）
-- Blade
-- Tailwind CSS
-- MySQL
+- プロジェクト/タスク詳細画面のコメント機能
+- ダッシュボードに期限が近いプロジェクトやタスクを表示
+- プロフィール編集（画像の追加・個人情報の設定）
+- タスク検索/絞り込み機能
+
 
 ## 補足
 
